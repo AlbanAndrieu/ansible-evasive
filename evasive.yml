@@ -1,0 +1,10 @@
+---
+- hosts: all
+  sudo: true
+  roles:
+    - role: ./
+     
+  vars:     
+       apache_mod_evasive_enabled: yes
+       
+
