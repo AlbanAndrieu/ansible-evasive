@@ -1,8 +1,9 @@
-## alban.andrieu.pagespeed
+## alban.andrieu.evasive
 
-[![Travis CI](http://img.shields.io/travis/AlbanAndrieu/ansible-pagespeed.svg?style=flat)](http://travis-ci.org/AlbanAndrieu/ansible-pagespeed) [![Branch](http://img.shields.io/github/tag/AlbanAndrieu/ansible-pagespeed.svg?style=flat-square)](https://github.com/AlbanAndrieu/ansible-pagespeed/tree/master) [![Donate](https://img.shields.io/gratipay/AlbanAndrieu.svg?style=flat)](https://www.gratipay.com/AlbanAndrieu)  [![Ansible Galaxy](http://img.shields.io/badge/galaxy-alban.andrieu.pagespeed-blue.svg?style=flat)](https://galaxy.ansible.com/list#/roles/1992) [![Platforms](http://img.shields.io/badge/platforms-ubuntu-lightgrey.svg?style=flat)](#)
+[![Travis CI](http://img.shields.io/travis/AlbanAndrieu/ansible-evasive.svg?style=flat)](http://travis-ci.org/AlbanAndrieu/ansible-evasive) [![Branch](http://img.shields.io/github/tag/AlbanAndrieu/ansible-evasive.svg?style=flat-square)](https://github.com/AlbanAndrieu/ansible-evasive/tree/master) [![Donate](https://img.shields.io/gratipay/AlbanAndrieu.svg?style=flat)](https://www.gratipay.com/AlbanAndrieu)  [![Ansible Galaxy](http://img.shields.io/badge/galaxy-alban.andrieu.evasive-blue.svg?style=flat)](https://galaxy.ansible.com/list#/roles/2535) [![Platforms](http://img.shields.io/badge/platforms-ubuntu-lightgrey.svg?style=flat)](#)
 
-Ensures that pagespeed is installed (using apt)
+Ensures that mod evasive is installed (using apt) on apache.
+It required fail2ban as well
 
 ### Installation
 
@@ -10,7 +11,7 @@ This role requires at least Ansible `v1.6.3`.
 
 To install it, run:
 
-    ansible-galaxy install alban.andrieu.pagespeed
+    ansible-galaxy install alban.andrieu.evasive
 
 ### Role dependencies
 
@@ -21,20 +22,19 @@ To install it, run:
 List of default variables available in the inventory:
 
 ```yaml
-        pagespeed_enabled: yes                       # Enable module
+        evasive_enabled: yes                       # Enable module
     
-    pagespeed_dir_tmp: "/tmp" # or override with "{{ tempdir.stdout }} in order to have be sure to download the file"
+    # Package states: present or installed or latest
+    evasive_pkg_state: present
+    # Repository states: present or absent
+    #evasive_repository_state: present
     
-    #pagespeed_major: "1"
-    #pagespeed_minor: "0.0"
-    #pagespeed_version: "{{pagespeed_major}}.{{pagespeed_minor}}"
-    #pagespeed_archive_extracted: "pagespeed_{{pagespeed_version}}"
-    #pagespeed_archive: "{{pagespeed_archive_extracted}}_Linux.tar.gz"
-    pagespeed_package_arch: "amd64"
-    #pagespeed_package_arch: "i386"
-    #pagespeed_package_deb: "mod-pagespeed-beta_current_amd64.deb"
-    pagespeed_package_deb: "mod-pagespeed-stable_current_{{ pagespeed_package_arch }}.deb"
-    pagespeed_url: "https://dl-ssl.google.com/dl/linux/direct/{{ pagespeed_package_deb }}"
+    apache_directory : "apache2"
+    apache_dos_log_path: "/var/log/{{ apache_directory }}/dos"
+    
+    fail2ban_conf_path: "/etc/fail2ban"
+    
+    apache_mod_evasive_enabled: yes
 ```
 
 
@@ -45,13 +45,13 @@ Describe how to use in more detail...
 
 ### Authors and license
 
-`alban.andrieu.pagespeed` role was written by:
+`alban.andrieu.evasive` role was written by:
 - [Alban Andrieu](fr.linkedin.com/in/nabla/) | [e-mail](mailto:alban.andrieu@free.fr) | [Twitter](https://twitter.com/AlbanAndrieu) | [GitHub](https://github.com/AlbanAndrieu)
 - License: [GPLv3](https://tldrlegal.com/license/gnu-general-public-license-v3-%28gpl-3%29)
 
 ### Feedback, bug-reports, requests, ...
 
-Are [welcome](https://github.com/AlbanAndrieu/ansible-pagespeed/issues)!
+Are [welcome](https://github.com/AlbanAndrieu/ansible-evasive/issues)!
 
 ***
 
