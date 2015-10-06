@@ -49,3 +49,14 @@
 #  notify: restart apache
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and apache_mod_evasive_enabled
 
+#TODO
+#http://blog.mattbrock.co.uk/hardening-the-security-on-ubuntu-server-14-04/
+- name: evasive | Install apache mod security
+  apt: pkg={{ item }} update_cache=yes state={{ evasive_pkg_state }}
+  sudo: yes
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and apache_mod_security_enabled
+  tags: package
+  with_items:
+   - libapache2-modsecurity
+
+

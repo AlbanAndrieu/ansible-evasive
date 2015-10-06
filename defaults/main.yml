@@ -11,3 +11,4 @@ apache_dos_log_path: "/var/log/{{ apache_directory }}/dos"
 fail2ban_conf_path: "/etc/fail2ban"
 
 apache_mod_evasive_enabled: yes
+apache_mod_security_enabled: yes
