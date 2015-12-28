@@ -13,10 +13,11 @@
   with_items:
    - libapache2-mod-evasive
 
+#TODO sudo rm -Rf /etc/apache2/conf.d/
 - name: evasive | Add apache mod evasive for denied of service configuration
   template:
     src: "evasive.conf.j2"
-    dest: "{{ apache_conf_path }}/conf.d/evasive.conf"
+    dest: "{{ apache_conf_path }}/mods-available/evasive.conf"
     owner: root
     group: root
     mode: 0644
