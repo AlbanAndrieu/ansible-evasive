@@ -1,9 +1,9 @@
 ---
 
-- name: evasive | Create {{ apache_document_root }} directory
-  file: path={{ apache_document_root }} state=directory
-  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu')
-  tags: package
+#- name: evasive | Create {{ apache_document_root }} directory
+#  file: path={{ apache_document_root }} state=directory
+#  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu')
+#  tags: package
 
 - name: evasive | Install apache mod evasive for denied of service
   apt: pkg={{ item }} update_cache=yes state={{ evasive_pkg_state }}
