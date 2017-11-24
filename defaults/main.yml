@@ -1,7 +1,7 @@
 evasive_enabled: yes                       # Enable module
 
 # Package states: present or installed or latest
-evasive_pkg_state: present
+util_pkg_state: present
 # Repository states: present or absent
 #evasive_repository_state: present
 

@@ -6,8 +6,8 @@
 #  tags: package
 
 - name: evasive | Install apache mod evasive for denied of service
-  apt: pkg={{ item }} update_cache=yes state={{ evasive_pkg_state }}
-  sudo: yes
+  action: "{{ ansible_pkg_mgr }} name={{ item }} state={{ util_pkg_state|default('present') }}"  
+  become: yes
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and apache_mod_evasive_enabled
   tags: package
   with_items:
@@ -21,13 +21,13 @@
     owner: root
     group: root
     mode: 0644
-  sudo: yes
+  become: yes
 #  notify: restart apache
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and apache_mod_evasive_enabled
 
 - name: evasive | Install apache mod evasive for denied of service for fail2ban
-  apt: pkg={{ item }} update_cache=yes state={{ evasive_pkg_state }}
-  sudo: yes
+  action: "{{ ansible_pkg_mgr }} name={{ item }} state={{ util_pkg_state|default('present') }}"  
+  become: yes
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and apache_mod_evasive_enabled
   tags: package
   with_items:
@@ -40,7 +40,7 @@
     owner: root
     group: root
     mode: 0644
-  sudo: yes
+  become: yes
 #  notify: restart apache
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and apache_mod_evasive_enabled
 
@@ -51,18 +51,17 @@
     owner: root
     group: root
     mode: 0644
-  sudo: yes
+  become: yes
 #  notify: restart apache
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and apache_mod_evasive_enabled
 
 #TODO
 #http://blog.mattbrock.co.uk/hardening-the-security-on-ubuntu-server-14-04/
 - name: evasive | Install apache mod security
-  apt: pkg={{ item }} update_cache=yes state={{ evasive_pkg_state }}
-  sudo: yes
+  action: "{{ ansible_pkg_mgr }} name={{ item }} state={{ util_pkg_state|default('present') }}"  
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and apache_mod_security_enabled
   tags: package
   with_items:
    - libapache2-modsecurity
-
-
+  become: yes
+  ignore_errors: true
