@@ -1,8 +1,7 @@
 ---
 
-#dependencies: []
 dependencies:
-  - { role: geerlingguy.apache }
+  - { role: geerlingguy.apache, become: true }
 
 galaxy_info:
   author: Alban Andrieu
